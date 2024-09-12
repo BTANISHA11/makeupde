@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Makeupde</title>
+	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="prefetch" href="model_weights.buf">
+</head>
+
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="index.html" class="navbar-brand">Makeupde</a>
+            </div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<!-- <li><a href="how.html">How it Works</a></li> -->
+				</ul>
+			</div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+
+		<div class="jumbotron">
+			<h1>Makeupde - da makeup remover</h1>
+			<!-- <p class="lead">Finally, machine learning for MEN!<br/> -->
+			Select a photo in square size, with face cropped:<br/>
+			(Nothing will be uploaded to the server, your browser will do all the work.)
+			</p>
+		</div>
+
+		<div id="preview" class="row text-center">
+			<!-- Image will be inserted here -->
+			<canvas id="input-canvas" width="128" height="128"></canvas>
+			<canvas id="output-canvas" width="128" height="128"></canvas>
+		</div>
+		<br>
+
+		<div class="row text-center">
+			<form action="" method="POST" enctype="multipart/form-data">
+				<label class="file">
+					<input id="tgt" type="file" name="file">
+					<span class="file-custom"></span>
+				</label>
+				<div class="checkbox checkbox-primary">
+					<input id="gpu" type="checkbox" checked="">
+					<label for="gpu">Use GPU Acceleration</label>
+				</div>
+				<!-- <button type="submit" class="btn btn-primary">Run DeMakeup!</button> -->
+			</form>
+			* Doesn't work on smartphones
+		</div>
+
+		<!-- <div class="row text-center">
+			<br>
+			<p> <a href="https://commons.wikimedia.org/wiki/File:Margot_Robbie_SDCC_2015.jpg"><img alt="Margot Robbie" src="example/mr.png"></a> </p>
+			<p> <a href="https://commons.wikimedia.org/wiki/File:Captain_Jack_Sparrow_(5763467649).jpg"><img alt="Captain Jack Sparrow" src="example/capt.png"></a> </p>
+		</div> -->
+
+        <hr />
+        <footer>
+			<p>
+			<!-- 2024, John Doe (deeplearning4men*gmail.com) <br> -->
+			<a href="https://github.com/naqeeb2710/demakeup">GitHub Repository</a>
+			</p>
+        </footer>
+    </div>
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+	<!-- acceleration and keras -->
+	<script src="lib/weblas.js"></script>
+	<script src="dist/keras.js"></script>
+	<script src="lib/spin.min.js"></script>
+	<script src="demakeup.js"></script>
+	<script type="text/javascript">
+	// Hook tgt
+	$( "#tgt" ).change(function()
+		{
+			//console.log( "photo change" )
+			renderImage(this.files[0]);
+	});
+	</script>
+
+
+</body>
+</html>
